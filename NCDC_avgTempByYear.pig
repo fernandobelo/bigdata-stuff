@@ -8,7 +8,7 @@ tempWithYear = FOREACH rawData GENERATE SUBSTRING (line, 15, 19) AS (year:charar
 tempWithYear_filtered = FILTER tempWithYear BY (quality MATCHES '[01459]');
 
 -- CAST to int (important)
-tempWithYear_cast = FOREACH tempWithYear GENERATE year, (int) temp;
+tempWithYear_cast = FOREACH tempWithYear_filtered GENERATE year, (int) temp;
 
 
 -- GROUP BY YEAR
